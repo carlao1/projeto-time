@@ -5,11 +5,16 @@
  */
 package gui;
 
+import Dao.JogadorDao;
+import Dao.PresidenteDao;
+import Dao.SocioDao;
+import Dao.TreinadorDao;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.ListModel;
+import javax.swing.table.DefaultTableModel;
 import projetoescola.Jogador;
 import projetoescola.Treinador;
 import projetoescola.Presidente;
@@ -32,6 +37,76 @@ public class Interface extends javax.swing.JFrame {
      */
     public Interface() {
         initComponents();
+        //DefaultTableModel dtm = DoadorController.gerarTabelaDoadores(pesquisa);
+       // jTableDoadores.setModel(dtm);
+       
+       
+       
+         DefaultTableModel dtm = new DefaultTableModel();
+        
+        dtm = new DefaultTableModel(new String[]{"Nome", "sexo", "idade","CPF"},0){
+            @Override
+            public boolean isCellEditable(int rowIndex, int mColIndex) { // tornar as células não editáveis
+                return false;
+            }
+        };
+        
+        String linhaTabela[] = {"carlos","m","22","123"};
+        dtm.addRow(linhaTabela);
+        String linhaTabela2[] = {"bia","f","30","12345"};
+        dtm.addRow(linhaTabela2);
+        jTablePresidente.setModel(dtm);
+       
+     
+       DefaultTableModel tab = new DefaultTableModel();
+        
+        tab = new DefaultTableModel(new String[]{"Nome", "sexo", "idade","CPF"},0){
+            @Override
+            public boolean isCellEditable(int rowIndex, int mColIndex) { // tornar as células não editáveis
+                return false;
+            }
+        };
+        
+        String linha[] = {"pedro","m","22","123"};
+        tab.addRow(linha);
+        String linha2[] = {"derenice","f","30","12345"};
+        tab.addRow(linha2);
+        jTable1Treinador.setModel(tab);
+        
+        
+        
+        DefaultTableModel tabe = new DefaultTableModel();
+        
+        tabe = new DefaultTableModel(new String[]{"Nome", "sexo", "idade","CPF"},0){
+            @Override
+            public boolean isCellEditable(int rowIndex, int mColIndex) { // tornar as células não editáveis
+                return false;
+            }
+        };
+        
+        String linha3[] = {"orlando","m","22","123"};
+        tab.addRow(linha3);
+        String linha4[] = {"daniela","f","30","12345"};
+        tab.addRow(linha4);
+        jTable1Jogador.setModel(tab);
+        
+        
+        
+        DefaultTableModel tabela = new DefaultTableModel();
+        
+        tabela = new DefaultTableModel(new String[]{"Nome", "sexo", "idade","CPF"},0){
+            @Override
+            public boolean isCellEditable(int rowIndex, int mColIndex) { // tornar as células não editáveis
+                return false;
+            }
+        };
+        
+        String linha5[] = {"caio","m","22","123"};
+        tab.addRow(linha5);
+        String linha6[] = {"natalia","f","30","12345"};
+        tab.addRow(linha6);
+        jTable1Socio.setModel(tab);
+        
         
         //DESCOMENTAR CONFORME AS LISTAGENS FICAREM PRONTAS
         //listarJogadores();
@@ -61,6 +136,8 @@ public class Interface extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         inputSexoPresidente = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTablePresidente = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         inputNomeTreinador = new javax.swing.JTextField();
@@ -71,6 +148,8 @@ public class Interface extends javax.swing.JFrame {
         inputIdadeTreinador = new javax.swing.JTextField();
         inputCPFTreinador = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1Treinador = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -81,6 +160,8 @@ public class Interface extends javax.swing.JFrame {
         inputSexoJogador = new javax.swing.JTextField();
         inputCPFJogador = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1Jogador = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -91,6 +172,8 @@ public class Interface extends javax.swing.JFrame {
         inputSexoSocio = new javax.swing.JTextField();
         inputCPFSocio = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable1Socio = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,6 +206,19 @@ public class Interface extends javax.swing.JFrame {
             }
         });
 
+        jTablePresidente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTablePresidente);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -149,6 +245,9 @@ public class Interface extends javax.swing.JFrame {
                             .addComponent(inputCPFPresidente)
                             .addComponent(inputSexoPresidente))))
                 .addContainerGap(183, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 5, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,7 +270,9 @@ public class Interface extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addGap(39, 39, 39)
                 .addComponent(jButton3)
-                .addContainerGap(859, Short.MAX_VALUE))
+                .addGap(50, 50, 50)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(498, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cadastrar Presidente", jPanel1);
@@ -195,6 +296,19 @@ public class Interface extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+
+        jTable1Treinador.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1Treinador);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -222,6 +336,9 @@ public class Interface extends javax.swing.JFrame {
                                 .addComponent(inputCPFTreinador))))
                     .addComponent(jButton2))
                 .addContainerGap(220, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,7 +361,9 @@ public class Interface extends javax.swing.JFrame {
                     .addComponent(inputCPFTreinador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
-                .addContainerGap(930, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(590, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cadastrar Treinador", jPanel2);
@@ -275,6 +394,19 @@ public class Interface extends javax.swing.JFrame {
             }
         });
 
+        jTable1Jogador.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable1Jogador);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -299,7 +431,11 @@ public class Interface extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(inputNomeJogador, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton1))
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,7 +458,9 @@ public class Interface extends javax.swing.JFrame {
                     .addComponent(inputCPFJogador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addComponent(jButton1)
-                .addContainerGap(900, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(578, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cadastrar Jogador", jPanel3);
@@ -347,6 +485,19 @@ public class Interface extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
+
+        jTable1Socio.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(jTable1Socio);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -373,7 +524,10 @@ public class Interface extends javax.swing.JFrame {
                         .addComponent(jLabel18)
                         .addGap(18, 18, 18)
                         .addComponent(inputCPFSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(200, Short.MAX_VALUE))
+                .addContainerGap(205, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 10, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -394,9 +548,11 @@ public class Interface extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(inputCPFSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(167, 167, 167)
+                .addGap(49, 49, 49)
                 .addComponent(jButton4)
-                .addContainerGap(700, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(468, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cadastrar Sócio Torcedor", jPanel4);
@@ -458,7 +614,7 @@ public class Interface extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         //CADASTRO DE PRESIDENTE
-        //NO ENTANTO, AO FINAL, TUDO DEVERIA PASSAR A UMA CLASSE CONTROLADORA 
+        //NO ENTANTO, AO FINAL, TUDO DEVERIA PASSAR A UMA CLASSE CONTROLADORA //LEMBRAR DISSO DEPOIS HEIN
         
         String nome = this.inputNome.getText();
         String cpf = this.inputCPFPresidente.getText();
@@ -472,11 +628,20 @@ public class Interface extends javax.swing.JFrame {
         
         p1.preencherPresidente(idade, nome, sexo, cpf);
         
-        this.listaPresidente.add(p1); //ANALOGO AO BD
+        PresidenteDao dao = new PresidenteDao();
+        
+        boolean isCreated = dao.create(p1);
+        
+        if(isCreated){
+            //FUTURE: IDEALMENTE, UMA MENSAGEM POPUP OU ALGO ASSIM
+            System.out.println("Presidente criado");
+        }
+        
+        /*this.listaPresidente.add(p1); //ANALOGO AO BD
         
         for (Presidente pres: this.listaPresidente){
             pres.imprimir();//DEMONSTRATIVO APENAS
-        }
+        }*/
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -497,11 +662,24 @@ public class Interface extends javax.swing.JFrame {
         
         p1.preencherSocio(idade, nome, sexo, cpf);
         
-        this.listaSocio.add(p1); //ANALOGO AO BD
+        SocioDao dao = new SocioDao();
+        
+        boolean isCreated = dao.create(p1);
+        
+        if(isCreated){
+            //FUTURE: IDEALMENTE, UMA MENSAGEM POPUP OU ALGO ASSIM
+            System.out.println("Socio torcedor criado");
+        }
+        
+        /*this.listaSocio.add(p1); //ANALOGO AO BD
         
         for (Socio soc: this.listaSocio){
             soc.imprimir();//DEMONSTRATIVO APENAS
         }// TODO add your handling code here:
+        
+        */
+        
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -517,11 +695,20 @@ public class Interface extends javax.swing.JFrame {
         
         p1.preencherTreinador(idade, nome, sexo, cpf);
         
-        this.listaTreinador.add(p1); //ANALOGO AO BD
+        TreinadorDao dao = new TreinadorDao();
+        
+        boolean isCreated = dao.create(p1);
+        
+        if(isCreated){
+            //FUTURE: IDEALMENTE, UMA MENSAGEM POPUP OU ALGO ASSIM
+            System.out.println("Treinador criado");
+        }
+        
+        /*this.listaTreinador.add(p1); //ANALOGO AO BD
         
         for (Treinador trei: this.listaTreinador){
             trei.imprimir();//DEMONSTRATIVO APENAS
-        }
+        }*/
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -538,11 +725,24 @@ public class Interface extends javax.swing.JFrame {
         
         p1.preencherJogador(idade, nome, sexo, cpf);
         
-        this.listaJogador.add(p1); //ANALOGO AO BD
+        //FUTURE: FUNCIONALIDADE DO CONTROLADOR
+        JogadorDao dao = new JogadorDao();
         
-        for (Jogador jog: this.listaJogador){
+        boolean isCreated = dao.create(p1);
+        
+        if(isCreated){
+            //FUTURE: IDEALMENTE, UMA MENSAGEM POPUP OU ALGO ASSIM
+            System.out.println("Jogador criado");
+        }
+        
+        
+        //this.listaJogador.add(p1); //ANALOGO AO BD
+        
+        /*for (Jogador jog: this.listaJogador){
             jog.imprimir();//DEMONSTRATIVO APENAS
         } // TODO add your handling code here:
+        
+        */
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void inputSexoPresidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputSexoPresidenteActionPerformed
@@ -647,7 +847,15 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1Jogador;
+    private javax.swing.JTable jTable1Socio;
+    private javax.swing.JTable jTable1Treinador;
+    private javax.swing.JTable jTablePresidente;
     // End of variables declaration//GEN-END:variables
 
     private void listarJogadores() {

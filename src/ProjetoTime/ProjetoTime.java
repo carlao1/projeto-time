@@ -5,8 +5,11 @@
  */
 package ProjetoTime;
 
+import Dao.JogadorDao;
 import gui.Interface;
+import java.util.ArrayList;
 import javax.swing.SwingUtilities;
+import projetoescola.Jogador;
 
 /**
  *
@@ -38,6 +41,8 @@ public class ProjetoTime {
             
             applet.start();*/
         });
+        
+        
        // Professor p1 = new Professor();
         
         //p1.preencher();
@@ -62,6 +67,35 @@ public class ProjetoTime {
 //        calculo.preencher();
 //        calculo.imprimir();
         
+
+    
+
+    /*System.out.println("Testando para read de multiplos: ");
+    JogadorDao testdao = new JogadorDao();
+    ArrayList<Jogador> resJogadores = testdao.getAll();
+     
+    for (Jogador jogador : resJogadores){
+     
+        jogador.imprimir();
+         
+    }
+     
+    System.out.println("Testando para um unico: ");
+    Jogador j1 = testdao.getOne(1);
+    j1.imprimir();
+     
+    System.out.println("Testando update: ");
+    
+    Jogador j2 = testdao.getOne(1);
+    j2.setNome("Pink Floyd Atualizado");
+    Jogador j3 = testdao.update(1, j2);
+    
+    j3.imprimir();*/
+    
+    //CUIDADO COM ESTE
+    //System.out.println("Testando delete: ");
+    //boolean res = testdao.delete(4);
+     
         
     }
     
