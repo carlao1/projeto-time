@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import projetoescola.Treinador;
+import Model.Treinador;
 
 /**
  *
@@ -62,29 +62,34 @@ public class TreinadorDao {
     public ArrayList<Treinador> getAll(){ //Consulta pra Retornar Todos os treinadores
         
         
-        String stmt = "SELECT * FROM treinador";
+        String stmt = "SELECT * FROM treinadores";
         Connection conn = Persistencia.conexao();
         
+        ArrayList<Treinador> resTreinadores = new ArrayList<Treinador>();
+        
         try{
-            
-            
+
             PreparedStatement ps = conn.prepareStatement(stmt);
-            boolean res = ps.execute();
             
-            if(res){
-                
-                ResultSet rsJogadores = ps.getResultSet();
-                
-                System.out.println(rsJogadores);
-                
-                //Tratar isso para um arraylist e retornar
-                //rsJogadores.next()
-                
-                return null;
-                
-            }
+            ResultSet rsTreinadores = ps.executeQuery();
             
-            return null;
+            while(rsTreinadores.next()){
+                    //PARSING DOS RESULTADOS
+                
+                    //System.out.println(rsJogadores.getString("nome"));
+                    Treinador novoTreinador = new Treinador();
+                    
+                    novoTreinador.preencherTreinador(rsTreinadores.getInt("idade"), 
+                            rsTreinadores.getString("nome"), 
+                            rsTreinadores.getString("sexo").charAt(0), 
+                            rsTreinadores.getString("cpf")
+                        );
+                    
+                    resTreinadores.add(novoTreinador);
+                    
+                }
+                
+                return resTreinadores;
             
             //conn.prepareStatement();
             
@@ -102,7 +107,7 @@ public class TreinadorDao {
         //Ver o tipo do id depois, deve ser int mesmo mas se for
         //diferente muda depois
         
-        String stmt = "SELECT * FROM treinador AS j WHERE j.id = ? LIMIT 1";
+        String stmt = "SELECT * FROM treinadores AS j WHERE j.id = ? LIMIT 1";
         Connection conn = Persistencia.conexao();
         
         try{
@@ -173,15 +178,15 @@ public class TreinadorDao {
         return null;
     }
     
-    public boolean delete(int id) {
+    public boolean delete(String cpf) {
         
-        String stmt = "DELETE FROM treinadores WHERE id = ?";
+        String stmt = "DELETE FROM treinadores WHERE cpf = ?";
         Connection conn = Persistencia.conexao();
         
         try{
             
             PreparedStatement ps = conn.prepareStatement(stmt);
-            ps.setInt(1, id);
+            ps.setString(1, cpf);
             
             boolean res = ps.execute();
             

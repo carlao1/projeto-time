@@ -1,4 +1,4 @@
-package projetoescola;
+package Model;
 
 import java.util.Scanner;
 
@@ -12,12 +12,12 @@ import java.util.Scanner;
  *
  * @author Carlos
  */
-public class Presidente extends Pessoa {
+public class Socio extends Pessoa {
     private String cpf;
     
     
     
-    public Presidente(){
+    public Socio(){
         super.setIdade(0);
         super.setNome("");
         super.setSexo(' ');
@@ -26,7 +26,7 @@ public class Presidente extends Pessoa {
      
     public void preencher(){
         Scanner leitor = new Scanner(System.in);
-        System.out.println("***** prenchendo professor*******");
+        System.out.println("***** prenchendo socio*******");
         System.out.println("informe o nome\n");
         super.setNome(leitor.next());
         System.out.println("informe o sexo\n");
@@ -38,7 +38,7 @@ public class Presidente extends Pessoa {
            
     }
     
-    public void preencherPresidente(int idade, String nome, char sexo, String cpf){
+    public void preencherSocio(int idade, String nome, char sexo, String cpf){
     
         //CRIAR UM MÉTODO PRA PREENCHER EH OPCIONAL, POREM BOA PRATICA.
         this.setIdade(idade);
@@ -47,13 +47,13 @@ public class Presidente extends Pessoa {
         this.setCpf(cpf);
         
         //MENSAGEM APENAS DEMONSTRATIVA, NAO PRECISA NO PROGRAMA FINAL
-        System.out.println("PRESIDENTE PREENCHIDO COM SUCESSO");
+        System.out.println("Socio PREENCHIDO COM SUCESSO");
         
     }
     
     @Override
     public void imprimir(){
-        System.out.println("***** imprimindo presidente*******");
+        System.out.println("***** imprimindo socio*******");
         super.imprimir();
         System.out.println("cpf" + this.getCpf());
         System.out.println("*************");
@@ -61,7 +61,7 @@ public class Presidente extends Pessoa {
     }
     
     
-    public void copiar(Presidente outro){
+    public void copiar(Socio outro){
        super.setNome(outro.getNome());
        super.setSexo(outro.getSexo());
        super.setIdade(outro.getIdade());

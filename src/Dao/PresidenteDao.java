@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import projetoescola.Presidente;
+import Model.Presidente;
 
 /**
  *
@@ -62,8 +62,10 @@ public class PresidenteDao {
     public ArrayList<Presidente> getAll(){ //Consulta pra Retornar Todos os presidentees
         
         
-        String stmt = "SELECT * FROM presidente";
+        String stmt = "SELECT * FROM presidentes";
         Connection conn = Persistencia.conexao();
+        
+        ArrayList<Presidente> resJogadores = new ArrayList<Presidente>();
         
         try{
             
@@ -71,20 +73,38 @@ public class PresidenteDao {
             PreparedStatement ps = conn.prepareStatement(stmt);
             boolean res = ps.execute();
             
+            //System.out.println(res);
+            
             if(res){
                 
                 ResultSet rsJogadores = ps.getResultSet();
                 
-                System.out.println(rsJogadores);
+                //System.out.println(rsJogadores);
                 
                 //Tratar isso para um arraylist e retornar
-                //rsJogadores.next()
                 
-                return null;
+                while(rsJogadores.next()){
+                    //PARSING DOS RESULTADOS
+                
+                    //System.out.println(rsJogadores.getString("nome"));
+                    Presidente novoJogador = new Presidente();
+                    
+                    novoJogador.preencherPresidente(
+                            
+                            rsJogadores.getInt("idade"), 
+                            rsJogadores.getString("nome"), 
+                            rsJogadores.getString("sexo").charAt(0), 
+                            rsJogadores.getString("cpf")
+                        );
+                    
+                    resJogadores.add(novoJogador);
+                    
+                }
+                
+                return resJogadores;
                 
             }
             
-            return null;
             
             //conn.prepareStatement();
             
@@ -102,7 +122,7 @@ public class PresidenteDao {
         //Ver o tipo do id depois, deve ser int mesmo mas se for
         //diferente muda depois
         
-        String stmt = "SELECT * FROM presidente AS j WHERE j.id = ? LIMIT 1";
+        String stmt = "SELECT * FROM presidentes AS j WHERE j.id = ? LIMIT 1";
         Connection conn = Persistencia.conexao();
         
         try{
@@ -135,7 +155,7 @@ public class PresidenteDao {
     public Presidente update(int id, Presidente dadosJogadorUpdate){ //Atualiza um 
         //acho que deveria retornar boolean, mas ai vai da preferencia de cada um
         
-        String stmt = "UPDATE presidentees SET nome = ?, sexo = ?, idade = ?, cpf = ? WHERE id = ?";
+        String stmt = "UPDATE presidentes SET nome = ?, sexo = ?, idade = ?, cpf = ? WHERE id = ?";
         
         Connection conn = Persistencia.conexao();
         
@@ -173,15 +193,15 @@ public class PresidenteDao {
         return null;
     }
     
-    public boolean delete(int id) {
+    public boolean delete(String cpf) {
         
-        String stmt = "DELETE FROM presidentees WHERE id = ?";
+        String stmt = "DELETE FROM presidentes WHERE cpf = ?";
         Connection conn = Persistencia.conexao();
         
         try{
             
             PreparedStatement ps = conn.prepareStatement(stmt);
-            ps.setInt(1, id);
+            ps.setString(1, cpf);
             
             boolean res = ps.execute();
             

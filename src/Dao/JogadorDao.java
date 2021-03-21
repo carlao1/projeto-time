@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import projetoescola.Jogador;
+import Model.Jogador;
 
 /**
  *
@@ -97,6 +97,7 @@ public class JogadorDao {
                     Jogador novoJogador = new Jogador();
                     
                     novoJogador.preencherJogador(
+                            
                             rsJogadores.getInt("idade"), 
                             rsJogadores.getString("nome"), 
                             rsJogadores.getString("sexo").charAt(0), 
@@ -212,16 +213,17 @@ public class JogadorDao {
     }
     
     //DELETE
-    public boolean delete(int id) {
+    public boolean delete(String cpf) {
         
-        String stmt = "DELETE FROM jogadores WHERE id = ?";
+        String stmt = "DELETE FROM jogadores WHERE cpf = ?";
         Connection conn = Persistencia.conexao();
         
         try{
             
             PreparedStatement ps = conn.prepareStatement(stmt);
-            ps.setInt(1, id);
+            ps.setString(1, cpf);
             
+            System.out.println(ps);
             boolean res = ps.execute();
             
             return res; //TODO: DEPENDENDO DO BANCO, CONSERTAR

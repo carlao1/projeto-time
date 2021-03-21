@@ -6,10 +6,10 @@
 package ProjetoTime;
 
 import Dao.JogadorDao;
-import gui.Interface;
+import View.Interface;
 import java.util.ArrayList;
 import javax.swing.SwingUtilities;
-import projetoescola.Jogador;
+import Model.Jogador;
 
 /**
  *

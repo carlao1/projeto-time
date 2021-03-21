@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import projetoescola.Socio;
+import Model.Socio;
 
 /**
  *
@@ -64,8 +64,10 @@ public class SocioDao {
     public ArrayList<Socio> getAll(){ //Consulta pra Retornar Todos os socioes
         
         
-        String stmt = "SELECT * FROM socio";
+        String stmt = "SELECT * FROM socios";
         Connection conn = Persistencia.conexao();
+        
+        ArrayList<Socio> resJogadores = new ArrayList<Socio>();
         
         try{
             
@@ -73,20 +75,38 @@ public class SocioDao {
             PreparedStatement ps = conn.prepareStatement(stmt);
             boolean res = ps.execute();
             
+            //System.out.println(res);
+            
             if(res){
                 
                 ResultSet rsJogadores = ps.getResultSet();
                 
-                System.out.println(rsJogadores);
+                //System.out.println(rsJogadores);
                 
                 //Tratar isso para um arraylist e retornar
-                //rsJogadores.next()
                 
-                return null;
+                while(rsJogadores.next()){
+                    //PARSING DOS RESULTADOS
+                
+                    //System.out.println(rsJogadores.getString("nome"));
+                    Socio novoJogador = new Socio();
+                    
+                    novoJogador.preencherSocio(
+                            
+                            rsJogadores.getInt("idade"), 
+                            rsJogadores.getString("nome"), 
+                            rsJogadores.getString("sexo").charAt(0), 
+                            rsJogadores.getString("cpf")
+                        );
+                    
+                    resJogadores.add(novoJogador);
+                    
+                }
+                
+                return resJogadores;
                 
             }
             
-            return null;
             
             //conn.prepareStatement();
             
@@ -104,7 +124,7 @@ public class SocioDao {
         //Ver o tipo do id depois, deve ser int mesmo mas se for
         //diferente muda depois
         
-        String stmt = "SELECT * FROM socio AS j WHERE j.id = ? LIMIT 1";
+        String stmt = "SELECT * FROM socios AS j WHERE j.id = ? LIMIT 1";
         Connection conn = Persistencia.conexao();
         
         try{
@@ -137,7 +157,7 @@ public class SocioDao {
     public Socio update(int id, Socio dadosSocioUpdate){ //Atualiza um 
         //acho que deveria retornar boolean, mas ai vai da preferencia de cada um
         
-        String stmt = "UPDATE socioes SET nome = ?, sexo = ?, idade = ?, cpf = ? WHERE id = ?";
+        String stmt = "UPDATE socios SET nome = ?, sexo = ?, idade = ?, cpf = ? WHERE id = ?";
         
         Connection conn = Persistencia.conexao();
         
@@ -175,15 +195,15 @@ public class SocioDao {
         return null;
     }
     
-    public boolean delete(int id) {
+    public boolean delete(String cpf) {
         
-        String stmt = "DELETE FROM socioes WHERE id = ?";
+        String stmt = "DELETE FROM socios WHERE cpf = ?";
         Connection conn = Persistencia.conexao();
         
         try{
             
             PreparedStatement ps = conn.prepareStatement(stmt);
-            ps.setInt(1, id);
+            ps.setString(1, cpf);
             
             boolean res = ps.execute();
             
